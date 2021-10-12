@@ -19,44 +19,46 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get("/", function () {
-  return view("home", [
-    "title" => "Home"
-  ]);
+    return view("home", [
+        "title" => "Home",
+        "link" => "home"
+    ]);
 });
 
 Route::get("/about", function () {
-  return view("about", [
-    "title" => "About",
-    "name" => "Andi Hartono, S.Kom",
-    "email" => "andihartono21@gmail.com",
-    "image" => "bg.jpeg"
-  ]);
+    return view("about", [
+        "title" => "About",  
+        "link" => "about",
+        "name" => "Andi Hartono, S.Kom",
+        "email" => "andihartono21@gmail.com",
+        "image" => "bg.jpeg"
+    ]);
 });
 
-Route::get("/blog", [PostController::class, "index"]);
+Route::get("/posts", [PostController::class, "index"]);
 
 Route::get("/posts/{post:slug}", [PostController::class, "show"]);
 
 Route::get("categories", function () {
-  return view("categories", [
-    "title" => "Post Categories",    
-    "active" => "categories",
-    "categories" => Category::all()
-  ]);
+    return view("categories", [
+        "title" => "Post Categories",    
+        "link" => "categories",
+        "categories" => Category::all()
+    ]);
 });
 
-Route::get("/categories/{category:slug}", function(Category $category) {
-  return view("posts", [
-    "title" => "Post By Category : $category->name",   
-    "active" => "categories",
-    "posts" => $category->posts->load("author", "category")
-  ]);
-});
+// Route::get("/categories/{category:slug}", function(Category $category) {
+//     return view("posts", [
+//         "title" => "Post By Category : $category->name",   
+//         "link" => "posts",
+//         "posts" => $category->posts->load("author", "category")
+//     ]);
+// });
 
-Route::get("authors/{author:username}", function (User $author) {
-  return view("posts", [
-    "title" => "Post By Author : $author->name", 
-    "active" => "categories",
-    "posts" => $author->posts->load("author", "category")
-  ]); 
-});
+// Route::get("authors/{author:username}", function (User $author) {
+//     return view("posts", [
+//         "title" => "Post By Author : $author->name", 
+//         "link" => "posts",
+//         "posts" => $author->posts->load("author", "category")
+//     ]); 
+// });
