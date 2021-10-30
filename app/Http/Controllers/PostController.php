@@ -9,30 +9,30 @@ use App\Models\User;
 
 class PostController extends Controller
 {
-    public function index()
-    {
-        $title = "";
-        if (request('category')) {
-            $category = Category::firstWhere('slug', request('category'));
-            $title = " in $category->name";
-        } elseif(request('author')) {
-            $author = User::firstWhere('username', request('author'));
-            $title = " in $author->name";
-        }
-
-        return view("posts", [
-            "title" => "All Posts $title",
-            "link" => "posts",
-            "posts" => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
-        ]);
+  public function index()
+  {
+    $title = "";
+    if (request('category')) {
+      $category = Category::firstWhere('slug', request('category'));
+      $title = " in $category->name";
+    } elseif(request('author')) {
+      $author = User::firstWhere('username', request('author'));
+      $title = " in $author->name";
     }
 
-    public function show(Post $post)
-    {
-        return view("post", [
-            "title" => "Single Post",
-            "link" => "posts",
-            "post" => $post
-        ]);
-    }
+    return view("posts", [
+      "title" => "All Posts $title",
+      "link" => "posts",
+      "posts" => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
+    ]);
+}
+
+  public function show(Post $post)
+  {
+    return view("post", [
+      "title" => "Single Post",
+      "link" => "posts",
+      "post" => $post
+    ]);
+  }
 }
