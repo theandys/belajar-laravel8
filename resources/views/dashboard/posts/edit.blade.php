@@ -41,7 +41,7 @@
       </div>
       
       <button type="submit" class="btn btn-success"><span data-feather="save"></span> Update Post</button>
-      <a href="/dashboard/posts/{{ $post->slug }}" class="btn btn-warning"><span data-feather="rotate-ccw"></span> Cancel</a>
+      <a href="/dashboard/posts" class="btn btn-warning"><span data-feather="rotate-ccw"></span> Cancel</a>
     </form>
   </div>
 
