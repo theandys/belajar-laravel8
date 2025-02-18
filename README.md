@@ -9,7 +9,8 @@ Here is minimum requirement to run this system:
 ## Instalation for development
 
 - ``composer install``
+- ``php artisan key:generate``
 - ``cp .env.example .env``
-	You should set db host, username, password, dll in .env before you run the migration
+	You should set db host, username, password, APP_KEY, dll in .env before you run the migration
 - ``php artisan migrate --seed``
 - ``php artisan serve``
